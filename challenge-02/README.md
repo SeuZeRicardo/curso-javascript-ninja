@@ -22,15 +22,16 @@ Crie uma função que adicione um valor à variável criada acima, e retorne a s
     O valor da variável agora é VALOR.
 Onde VALOR é o novo valor da variável.
 */
-function teste(x){
-	return x = 'VALOR';
+function teste(){
+	fautop = 25;
+	return 'O valor da variável agora é ' + fautop;
 }
 
 // Invoque a função criada acima.
-teste(faustop);
+teste();
 
 // Qual o retorno da função? (Use comentários de bloco).
-"VALOR"
+// 'O valor da variável agora é 25'
 
 /*
 Crie uma função com as seguintes características:
@@ -38,9 +39,13 @@ Crie uma função com as seguintes características:
 2. Se qualquer um dos três argumentos não estiverem preenchidos, a função deve retornar a string:
     Preencha todos os valores corretamente!
 3. O retorno da função deve ser a multiplicação dos 3 argumentos, somando `2` ao resultado da multiplicação.
+
+ANOTAÇÕES
+- NULL - Representa uma variavel com o valor atribuido de Null
+- UNDEFINED - Representa uma variavel que não foi passado nenhum valor 
 */
 function teste2(a,b,c) {
- if (a == null || b == null || c == null){
+ if (a === undefined || b === undefined || c === undefined){
 		return 'Preencha todos os valores corretamente!'; 
 	}
 	else {
@@ -70,16 +75,16 @@ Crie uma função com as seguintes características:
 6. E ainda, se nenhuma das condições acima forem atendidas, retorne `null`.
 */
 function teste3(a,b,c) {
-	if (a !== null && b === null && c === null) {
+	if (a !== undefined && b === undefined && c === undefined) {
 		return a;
 	} 
-	else if(a !== null && b !== null && c === null) {
-		return a+b;
+	else if(a !== undefined && b !== undefined && c === undefined) {
+		return a + b;
 	} 
-	else if(a !== null && b !== null && c !== null) {
-		return (a+b)/c;
+	else if(a !== undefined && b !== undefined && c !== undefined) {
+		return (a + b) / c;
 	} 
-	else if(a === null && b === null && c === null) {
+	else if(a === undefined && b === undefined && c === undefined) {
 		return false;
 	}	
 	else {

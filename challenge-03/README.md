@@ -2,7 +2,7 @@
 
 ```js
 // Declarar uma variável qualquer, que receba um objeto vazio.
-var variavelTop;
+var variavelTop = {};
 
 /*
 Declarar uma variável `pessoa`, que receba suas informações pessoais.
@@ -16,7 +16,7 @@ As propriedades e tipos de valores para cada propriedade desse objeto devem ser:
 - `andando` - Boolean - recebe "falso" por padrão
 - `caminhouQuantosMetros` - Number - recebe "zero" por padrão
 */
-pessoa = {
+var pessoa = {
   nome: 'Ricardo',
   sobrenome: 'Carvalho',
   sexo: 'Masculino',
@@ -33,8 +33,7 @@ alterar o valor da propriedade `idade` dessa pessoa, somando `1` a cada vez que
 for chamado.
 */
 pessoa.fazerAniversario = function () {
-  pessoa.idade++;
-  return pessoa.idade;
+  pessoa.idade++;  
 }
 
 /*
@@ -49,8 +48,7 @@ booleano que representa "verdadeiro";
 */
 pessoa.andar = function (qtsAndada) {
   pessoa.caminhouQuantosMetros = pessoa.caminhouQuantosMetros + qtsAndada;
-  pessoa.andando = true;
-  return pessoa;
+  pessoa.andando = true;  
 }
 
 /*
@@ -58,8 +56,7 @@ Adicione um método ao objeto `pessoa` chamado `parar`, que irá modificar o val
 da propriedade `andando` para o valor booleano que representa "falso".
 */
 pessoa.parar = function () {  
-  pessoa.andando = false;
-  return pessoa.andando;
+  pessoa.andando = false;  
 }
 
 /*
@@ -67,7 +64,7 @@ Crie um método chamado `nomeCompleto`, que retorne a frase:
 - "Olá! Meu nome é [NOME] [SOBRENOME]!"
 */
 pessoa.nomeCompleto = function () {
-  return "Olá! Meu nome é " + pessoa.nome + " " + pessoa.sobrenome;
+  return 'Olá! Meu nome é ' + pessoa.nome + ' ' + pessoa.sobrenome + '!';
 }
 
 /*
@@ -99,7 +96,7 @@ Agora vamos brincar um pouco com o objeto criado:
 Qual o nome completo da pessoa? (Use a instrução para responder e comentários
 inline ao lado da instrução para mostrar qual foi a resposta retornada)
 */
-pessoa.nomeCompleto(); //Ricardo Carvalho
+pessoa.nomeCompleto(); //Olá! Meu nome é Ricardo Carvalho!
 
 /*
 Qual a idade da pessoa? (Use a instrução para responder e comentários
@@ -182,7 +179,20 @@ método), que será concatenada com a frase de retorno, mostrando a resposta
 correta, de acordo com os dados inseridos no objeto.
 */
 pessoa.apresentacao = function () {
-  return pessoa.nomeCompleto() + ", tenho " + pessoa.idade + " anos," + pessoa.altura + "mts" + " , meu peso é " + pessoa.peso + " e, só hoje, eu já caminhei " + pessoa.caminhouQuantosMetros + " metros!";
+  var sexo = 'o';
+  var idadeAnos = 'anos, ';
+  var metrosCaminhados = 'metros!';
+
+  if (pessoa.sexo === 'Feminimo'){
+    sexo = 'a'; 
+  }
+  else if (pessoa.idade === 1){
+    idadeAnos = 'ano, ';
+  }
+  else if (pessoa.caminhouQuantosMetros === 1){
+    metrosCaminhados = 'metro!';
+  }
+  return 'Olá, eu sou ' + sexo + ' ' + pessoa.nome + ' ' + pessoa.sobrenome + ", tenho " + pessoa.idade + idadeAnos + pessoa.altura + "mts" + " , meu peso é " + pessoa.peso + " e, só hoje, eu já caminhei " + pessoa.caminhouQuantosMetros + metrosCaminhados;
 }
 
 // Agora, apresente-se ;)
