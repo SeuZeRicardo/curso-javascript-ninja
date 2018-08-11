@@ -54,10 +54,8 @@ Mostre os números de 20 a 30 no console (inclusive o 30), usando a estrutura de
 repetição "while".
 */
 var numero = 20;
-
 while (numero <= 30) {
-  console.log('Numero do While ->', numero);
-  numero++;
+  console.log('Numero do While ->', numero++);
 }
 
 /*
@@ -75,22 +73,17 @@ Crie uma função chamada `convertToHex`, com as seguintes características:
 function convertToHex(novaCor) {
   switch (novaCor) {
     case 'vermelha':
-      console.log('O hexadecimal para a cor ' + novaCor + ' é #ff0000');
-      break;
+      return 'O hexadecimal para a cor ' + novaCor + ' é #ff0000';
     case 'azul':
-      console.log('O hexadecimal para a cor ' + novaCor + ' é #0000ff');
-      break;
+      return 'O hexadecimal para a cor ' + novaCor + ' é #0000ff';
     case 'verde':
-      console.log('O hexadecimal para a cor ' + novaCor + ' é #00ff00');
-      break;
+      return 'O hexadecimal para a cor ' + novaCor + ' é #00ff00';
     case 'preta':
-      console.log('O hexadecimal para a cor ' + novaCor + ' é #000000');
-      break;
+      return 'O hexadecimal para a cor ' + novaCor + ' é #000000';
     case 'branca':
-      console.log('O hexadecimal para a cor ' + novaCor + ' é #ffffff');
-      break;
+      return 'O hexadecimal para a cor ' + novaCor + ' é #ffffff';
     default:
-      console.log('Não temos o equivalente hexadecimal para ' + novaCor);
+      return 'Não temos o equivalente hexadecimal para ' + novaCor;
   }
 }
 
