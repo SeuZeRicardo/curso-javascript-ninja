@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Challenge-23</title>
+</head>
+<style>
+  body {
+    background-color: rgba(221,223,230,1);
+  }
+  .calculator {
+    text-align: center;    
+    margin: auto;
+    display: block;
+    max-width: 13em;
+  }
+
+  input {
+    width: 87%;
+    height: 1em;
+    font-size: 2em;
+    padding: 10px 5px;
+    border: none;
+  }
+    
+  button {
+    background-color: rgba(37,44,65,1);
+    color: #f4f5f9;
+    border: none;
+    width: 3em;
+    height: 3em;
+    margin: .2em;
+  }
+
+  .result {
+    background: #f1404b;    
+    color: #f4f5f9;
+  }
+</style>
+
+<body>
+
+  <div class="calculator">
+    <div class="ledDisplay">
+      <input type="text" value="0" readonly>
+    </div>
+    <div class="row">
+      <button class="numbers" type="button" data-value-btn="7">7</button>
+      <button class="numbers" type="button" data-value-btn="8">8</button>
+      <button class="numbers" type="button" data-value-btn="9">9</button>
+      <button class="operator" type="button" data-value-btn="÷">/</button>
+    </div>
+    <div class="row">
+      <button class="numbers" type="button" data-value-btn="4">4</button>
+      <button class="numbers" type="button" data-value-btn="5">5</button>
+      <button class="numbers" type="button" data-value-btn="6">6</button>
+      <button class="operator" type="button" data-value-btn="-">-</button>
+    </div>
+    <div class="row">
+      <button class="numbers" type="button" data-value-btn="1">1</button>
+      <button class="numbers" type="button" data-value-btn="2">2</button>
+      <button class="numbers" type="button" data-value-btn="3">3</button>
+      <button class="operator" type="button" data-value-btn="+">+</button>
+    </div>
+    <div class="row">
+      <button class="clear" type="reset" data-value-btn="c">c</button>
+      <button class="numbers" type="button" data-value-btn="0">0</button>
+      <button class="result" type="submit" data-value-btn="=">=</button>
+      <button class="operator" type="button" data-value-btn="x">x</button>
+    </div>
+  </div>
+
+  <script src="challenge-23.js" type="text/javascript" />
+
+  </body>
+</html>
