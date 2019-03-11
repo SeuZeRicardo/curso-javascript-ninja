@@ -1,5 +1,5 @@
 (function () {
-  'use strict'  
+  'use strict'
   /*
   Vamos desenvolver mais um projeto. A ideia é fazer uma mini-calculadora.
   As regras são:
@@ -30,64 +30,81 @@
   var $buttonOperators = document.querySelectorAll('.operator');
   var $buttonResult = document.querySelector('.result');
   var $buttonClear = document.querySelector('.clear');
-  var $displayCalc = document.querySelector('input');  
+  var $displayCalc = document.querySelector('input');
 
   //Functions -> Pegar valor do botao clicado
-  function getButtonValue(buttonValue){      
-    $displayCalc.value += buttonValue;    
+  function getButtonValue(buttonValue) {
+    $displayCalc.value += buttonValue;
   }
 
   //Functions -> Zera o operador e o display
-  function clearDisplayCalc(){
-    $displayCalc.value = 0;    
+  function clearDisplayCalc() {
+    $displayCalc.value = 0;
   }
 
   //Functions -> Verifica se o ultimo item é de um operador
-  function isOperatorLast() {    
+  function isOperatorLast() {
     var calcOperation = ['+', '-', 'x', '÷'];
-    var lastOperator = $displayCalc.value.split('').pop(); 
+    var lastOperator = $displayCalc.value.split('').pop();
     return calcOperation.some(function (operador) {
       return operador === lastOperator;
     });
   }
 
   function removeLastOperator() {
-    if(isOperatorLast()) {
-      $displayCalc.value.slice(0,-1);
+    if (isOperatorLast()) {
+      $displayCalc.value = $displayCalc.value.slice(0, -1);
     }
   }
 
   //Functions -> Verifica se o ultimo item é de um operador
-  function resultCalc(){
-    var dataNumber = $displayCalc.value.split('');    
+  function resultCalc() {
+    removeLastOperator();
+    var allValues = $displayCalc.value.match(/\d+[+x-÷]?/g);
+
+    var result = allValues.reduce(function (accumulated, actual) {
+      var firstValue = accumulated.slice(0, -1);
+      var operator = accumulated.split('').pop();
+      var lastValue = actual;
+      switch (operator) {
+        case '+':
+          return Number(firstValue) + Number(lastValue);
+        case '-':
+          return Number(firstValue) - Number(lastValue);
+        case 'x':
+          return Number(firstValue) * Number(lastValue);
+        case '÷':
+          return Number(firstValue) / Number(lastValue);
+      }
+    });
+    $displayCalc.value = result; 
   }
 
   //Quando o botão é clicado pega o valor do botão Numerais e aciona a função
-  $buttonNumbers.forEach(function (htmlElement){
-    htmlElement.addEventListener('click', function (){
+  $buttonNumbers.forEach(function (htmlElement) {
+    htmlElement.addEventListener('click', function () {
       getButtonValue(htmlElement.getAttribute('data-value-btn'));
     });
   });
 
   //Quando o botão é clicado pega o valor do botão de Operadores e aciona a função
-  $buttonOperators.forEach(function (htmlElement){
-    htmlElement.addEventListener('click', function (){            
-      if(isOperatorLast()){        
-        $displayCalc.value = $displayCalc.value.slice(0,-1);
+  $buttonOperators.forEach(function (htmlElement) {
+    htmlElement.addEventListener('click', function () {
+      if (isOperatorLast()) {
+        $displayCalc.value = $displayCalc.value.slice(0, -1);
       }
-      $displayCalc.value += htmlElement.getAttribute('data-value-btn'); 
+      $displayCalc.value += htmlElement.getAttribute('data-value-btn');
     });
   });
 
   //Quando o botão é clicado pega o valor do botão de limpar o visor  e aciona a função
-  $buttonClear.addEventListener('click', function (){
+  $buttonClear.addEventListener('click', function () {
     clearDisplayCalc();
-  });  
+  });
 
   //Quando o botão de resultado é clicado e aciona a função que traz o valor calculado
-  $buttonResult.addEventListener('click', function (){
-    removeLastOperator();
+  $buttonResult.addEventListener('click', function () {
     resultCalc();
-  });  
+  });
 
 })();
