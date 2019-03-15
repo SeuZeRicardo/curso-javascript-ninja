@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>challenge-29</title>
+</head>
+
+<body>
+  <header>
+    <h1>
+      <span data-js="company-name"></span>
+      <span data-js="company-number"></span>
+    </h1>
+  </header>
+
+  <form data-js="form-register" action="/">        
+    <div class="form-item">
+      <label>Imagem do carro</label>
+      <input data-js="cep" type="url" />
+    </div>
+    <div class="form-item">
+      <label>Marca / Modelo</label>
+      <input data-js="cep" type="text" />
+    </div>
+
+    <div class="form-item">
+      <label>Ano</label>
+      <input data-js="cep" type="number" />
+    </div>
+
+    <div class="form-item">
+      <label>Cor</label>
+      <input data-js="cep" type="text" />
+    </div>
+
+    <div class="form-item">      
+      <input type="button" value="Cadastrar">
+    </div>
+  </form>
+
+
+  <table class="car-list">
+    <thead>
+      <tr>
+        <th>Imagem do Carro</th>
+        <th>Marca/Modelo</th>
+        <th>Cor</th>
+        <th>Ano</th>
+      </tr>      
+    </thead>
+    <tbody></tbody>
+  </table>
+  <script src="dom.js"></script>
+  <script src="challenge-29.js"></script>
+</body>
+
+</html>

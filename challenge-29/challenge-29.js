@@ -1,4 +1,4 @@
-(function() {
+(function (DOM) {
   'use strict';
 
   /*
@@ -36,4 +36,44 @@
   que será nomeado de "app".
   */
 
-})();
+  function app() {
+    return {
+
+      //Função que inicializa a aplicação
+      init: function init() {
+        //Aqui vai ser chamado a função ao iniciar o app
+        this.companyInfo();
+      },
+
+      //Função que faz a chamada do JSON com os dados da minha empresa
+      companyInfo: function companyInfo() {
+        var ajax = new XMLHttpRequest();      
+
+        ajax.open('GET', "company.json", true);
+        ajax.send();
+        ajax.addEventListener('readystatechange', this.getCompanyInfo, false);
+      },
+
+      //Função que vai inserir o texto recebido no campo necessario
+      getCompanyInfo: function getCompanyInfo(){                
+        if (!app().isReady.call(this)) 
+          return;
+          var data = JSON.parse(this.responseText);
+          var $companyName = new DOM('[data-js="company-name"]');
+          var $companyFone = new DOM('[data-js="company-number"]');
+
+          $companyName.get()[0].textContent = data.name;
+          $companyFone.get()[0].textContent = data.phone;        
+      },
+
+      //Verifica se a requisição foi feita
+      isReady: function isReady(){
+        return this.readyState === 4 && this.status === 200;
+      },
+    }
+  }
+
+  //Chamada da função que inicializa o app
+  app().init();
+
+})(window.DOM);
