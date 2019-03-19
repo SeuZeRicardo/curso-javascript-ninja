@@ -4,6 +4,23 @@
 <head>
   <meta charset="UTF-8">
   <title>challenge-29</title>
+  <style>
+    h1 span{
+      display: block;
+      text-align: center;
+    }
+
+    form.form-register,
+    table.car-list {
+      display: inline-block;
+      width: 45%;
+      margin: 20px;
+    }
+
+    .form-item {
+      padding: 10px 0;
+    }
+  </style>
 </head>
 
 <body>
@@ -17,25 +34,25 @@
   <form data-js="form-register" action="/">        
     <div class="form-item">
       <label>Imagem do carro</label>
-      <input data-js="cep" type="url" />
+      <input data-js="car-image" type="url" value="https://placeholder.com/"/>
     </div>
     <div class="form-item">
       <label>Marca / Modelo</label>
-      <input data-js="cep" type="text" />
+      <input data-js="car-model" type="text" value="Renault Logan"/>
     </div>
 
     <div class="form-item">
       <label>Ano</label>
-      <input data-js="cep" type="number" />
+      <input data-js="car-year" type="number" value="2009"/>
     </div>
 
     <div class="form-item">
       <label>Cor</label>
-      <input data-js="cep" type="text" />
+      <input data-js="car-color" type="text" value="Cinza"/>
     </div>
 
     <div class="form-item">      
-      <input type="button" value="Cadastrar">
+      <button type="button" value="Cadastrar">Cadastrar</button>
     </div>
   </form>
 

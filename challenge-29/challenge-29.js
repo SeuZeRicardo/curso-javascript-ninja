@@ -36,13 +36,14 @@
   que será nomeado de "app".
   */
 
-  function app() {
-    return {
+  var app = (function appController () {
+    return {      
 
       //Função que inicializa a aplicação
-      init: function init() {
+      init: function init() {        
         //Aqui vai ser chamado a função ao iniciar o app
         this.companyInfo();
+        this.initEvents();
       },
 
       //Função que faz a chamada do JSON com os dados da minha empresa
@@ -51,29 +52,73 @@
 
         ajax.open('GET', "company.json", true);
         ajax.send();
-        ajax.addEventListener('readystatechange', this.getCompanyInfo, false);
+        ajax.addEventListener('readystatechange', this.getCompanyInfo, false);              
       },
 
       //Função que vai inserir o texto recebido no campo necessario
       getCompanyInfo: function getCompanyInfo(){                
-        if (!app().isReady.call(this)) 
+        if (!app.isReady.call(this)) 
           return;
           var data = JSON.parse(this.responseText);
-          var $companyName = new DOM('[data-js="company-name"]');
-          var $companyFone = new DOM('[data-js="company-number"]');
+          var $companyName = new DOM('[data-js="company-name"]').get()[0];
+          var $companyFone = new DOM('[data-js="company-number"]').get()[0];
 
-          $companyName.get()[0].textContent = data.name;
-          $companyFone.get()[0].textContent = data.phone;        
+          $companyName.textContent = data.name;
+          $companyFone.textContent = data.phone;        
       },
 
       //Verifica se a requisição foi feita
       isReady: function isReady(){
         return this.readyState === 4 && this.status === 200;
       },
+
+
+      //Função que pega todos os eventos
+      initEvents: function initEvents(){
+        new DOM ("[type='button']").on('click', this.getInputValue);
+      },
+
+      getInputValue: function getInputValue(e){
+        e.preventDefault();
+
+        var $tableBody = new DOM('tbody').get()[0];
+
+        var $fragment =  document.createDocumentFragment();
+        var $tr = document.createElement('tr');
+        var $tdImage = document.createElement('td');
+        var $tdBrand = document.createElement('td');
+        var $tdYear = document.createElement('td');
+        var $tdColor = document.createElement('td');
+        var $image = document.createElement('img');
+
+
+        
+        
+        var $imageValue = new DOM('[data-js="car-image"]').get()[0].value;
+        var $modelValue = new DOM('[data-js="car-model"]').get()[0].value;
+        var $yearValue = new DOM('[data-js="car-year"]').get()[0].value;
+        var $colorValue = new DOM('[data-js="car-color"]').get()[0].value;
+
+        $image.setAttribute('src', $imageValue);
+
+        $tdImage.appendChild($image);
+        $tdBrand.innerHTML = $modelValue;          
+        $tdYear.innerHTML = $yearValue;          
+        $tdColor.innerHTML = $colorValue;
+
+        $tr.appendChild($tdImage);
+        $tr.appendChild($tdBrand);
+        $tr.appendChild($tdYear);
+        $tr.appendChild($tdColor);
+
+        $fragment.appendChild($tr);
+
+        $tableBody.appendChild($fragment);
+      },
     }
-  }
+  })();
 
   //Chamada da função que inicializa o app
-  app().init();
+  app.init();
 
 })(window.DOM);
